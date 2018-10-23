@@ -1,0 +1,17 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity HIGH3 is
+    port(
+        A : in std_logic_vector(2 downto 0);
+        Y : out std_logic
+    );
+end HIGH3;
+
+architecture RTL of HIGH3 is 
+    signal W0 : std_logic;
+
+    begin
+        W0 <= A(2) AND A(1);
+        Y <= W0 OR A(0);
+end RTL;
