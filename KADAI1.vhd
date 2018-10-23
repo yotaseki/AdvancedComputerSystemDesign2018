@@ -28,8 +28,8 @@ architecture RTL of KADAI1 is
 
     process (W3) begin
         case W3 is
-            when '1' => LEDOUT <= "0001001";
-            when '0' => LEDOUT <= "1000111";
+            when '1' => LEDOUT <= "0001001"; -- H
+            when '0' => LEDOUT <= "1000111"; -- L
         end case;
     end process;
 end RTL;
