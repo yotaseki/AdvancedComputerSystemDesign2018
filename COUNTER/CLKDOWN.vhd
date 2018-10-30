@@ -6,7 +6,7 @@ entity CLKDOWN is
     port (
         CLK     : in std_logic;
         RSTN    : in std_logic;
-        ENABLE  : out std_logic
+        CLKEN   : out std_logic
     );
 end CLKDOWN;
     
@@ -21,13 +21,13 @@ begin
     process (CLK, RSTN) begin
         if (RSTN='0') then
             COUNT <= MAXCOUNT;
-            ENABLE <= '0';
+            CLKEN <= '0';
         elsif (CLK'event and CLK = '1') then
             COUNT <= MAXCOUNT;
-            ENABLE <= '1';
+            CLKEN <= '1';
         else
             COUNT <= COUNT - 1;
-            ENABLE <= '0';
+            CLKEN <= '0';
         end if;
     end if;
 end process;
