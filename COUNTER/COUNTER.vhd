@@ -5,8 +5,7 @@ entity COUNTER is
     port (
         CLK : in std_logic;
         RSTN: in std_logic;
-        STARTN: in std_logic;
-        STOPN:  in std_logic;
+        SSN: in std_logic;
         LEDOUTL: out std_logic_vector(6 downto 0);
         LEDOUTH: out std_logic_vector(6 downto 0)
     );
@@ -21,21 +20,21 @@ architecture RTL of COUNTER is
     
     component SWTEST port (
         CLK,RSTN		: in std_logic;
-        STARTN,STOPN    : in std_logic;
+        SSN             : in std_logic;
         EN				: out std_logic
         );
     end component;
 
     component LEDDEC port (
         DATA    : in std_logic_vector(3 downto 0);
-        LEDOUTN  : out std_logic_vector(6 downto 0)
+        LEDOUTN : out std_logic_vector(6 downto 0)
         );
     end component;
     
     component CLKDOWN port(
-        CLK     : in std_logic;
-        RSTN    : in std_logic;
-        EN		: out std_logic
+        CLK,RSTN    : in std_logic;
+        ENABLE      : in std_logic;
+        EN		    : out std_logic
         );
     end component;
     
@@ -47,15 +46,13 @@ architecture RTL of COUNTER is
     end component;
 
 begin
-    U1 : CLKDOWN port map (
-        CLK=>CLK, RSTN=>RSTN, EN=>CLKEN
+    U1 : SWTEST port map(
+        CLK=>CLK, RSTN=>RSTN, SSN=>SSN, EN=>SWEN
     );
-    U2 : SWTEST port map(
-        CLK=>CLK, RSTN=>RSTN, STARTN=>STARTN, STOPN=>STOPN, EN=>SWEN
+    U2 : CLKDOWN port map (
+        CLK=>CLK, RSTN=>RSTN, ENABLE=>SWEN ,EN=>CLKEN
     );
-
-    COUNTENABLE <= CLKEN and SWEN;
-
+    COUNTENABLE <= CLKEN;
     U3 : COUNT port map (
         CLK=>CLK, RSTN=>RSTN, ENABLE=>COUNTENABLE, COUNTL=>DATAL, COUNTH=>DATAH
     );
