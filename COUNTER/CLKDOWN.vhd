@@ -13,8 +13,8 @@ end CLKDOWN;
 architecture RTL of CLKDOWN is
     signal COUNT        : std_logic_vector(25 downto 0);
     constant MAXCOUNT   : std_logic_vector(25 downto 0)
----                     := "10111110101111000010000000";
-						:= "00000000000000000000000010";
+                     := "10111110101111000010000000";
+		--- := "00000000000000000000000010";
     constant ZEROCOUNT  : std_logic_vector(25 downto 0)
                         := "00000000000000000000000000";
 begin

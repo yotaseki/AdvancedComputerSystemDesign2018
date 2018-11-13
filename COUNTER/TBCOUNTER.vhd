@@ -42,7 +42,7 @@ begin
         TBSTARTN <= '1'; TBSTOPN <='1';  wait for CLK_CYCLE/2;
                                         wait for CLK_CYCLE*5;
         TBSTARTN <= '0'; TBSTOPN <='1'; wait for CLK_CYCLE*5;
-        TBSTARTN <= '1'; TBSTOPN <='1'; wait for CLK_CYCLE*10;
+        TBSTARTN <= '1'; TBSTOPN <='1'; wait for CLK_CYCLE*30;
         TBSTARTN <= '1'; TBSTOPN <='0'; wait for CLK_CYCLE*5;
         TBSTARTN <= '1'; TBSTOPN <='1'; wait;
     end process;

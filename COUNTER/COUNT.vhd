@@ -20,7 +20,7 @@ process(CLK,RSTN) begin
 		WL <= "0000";
 	elsif (CLK'event and CLK='1') then
 		if (ENABLE='1') then
-			if (WH = "1001" and WL = "1001") then
+			if (WH = "0101" and WL = "1001") then
 				WL <= "0000";
 				WH <= "0000";
 			elsif (WL = "1001") then
