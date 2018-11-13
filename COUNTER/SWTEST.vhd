@@ -4,7 +4,7 @@ use ieee.std_logic_unsigned.all;
 
 entity SWTEST is
     port (
-        CLK,RST		: in std_logic;
+        CLK,RSTN		: in std_logic;
         SSN	        : in std_logic;
         EN		: out std_logic
     );

@@ -11,7 +11,6 @@ entity CLKDOWN is
 end CLKDOWN;
     
 architecture RTL of CLKDOWN is
-    signal ENFLAG       : std_logic;  
     signal COUNT        : std_logic_vector(25 downto 0);
     constant MAXCOUNT   : std_logic_vector(25 downto 0)
         	        := "10111110101111000010000000";
@@ -23,13 +22,8 @@ begin
         if (RSTN='0') then
             COUNT <= MAXCOUNT;
             EN <= '0';
-            ENFLAG <= '0';
         elsif (CLK'event and CLK='1') then
-            if (ENABLE='1') then
-                ENFLAG <= '1';
-            end if;
-            if (COUNT = ZEROCOUNT and ENFLAG = '1') then
-                ENFLAG <= '0';
+            if (COUNT = ZEROCOUNT and ENABLE = '1') then
                 COUNT <= MAXCOUNT;
                 EN <= '1';
             else
